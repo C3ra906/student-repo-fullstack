@@ -9,6 +9,11 @@ const calculateChange = (input) => {
   let penny = 0;
   let remainder = 0;
   let new_remainder = 0;
+  let dollar_message = '';
+  let quarter_message = '';
+  let dime_message = '';
+  let nickel_message = '';
+  let penny_message = '';
 
   if (input > 10) {
     return `$${input.toFixed(2)} ==> Error: the number is too large`;
@@ -22,30 +27,74 @@ const calculateChange = (input) => {
       //Dollar
       remainder = input % 1;
       dollar = (input - remainder) / 1;
-      //console.log(`remainder after ${dollar} dollars: ${remainder}`);
       //Quarter
       new_remainder = remainder % 0.25;
       quarter = (remainder - new_remainder) / 0.25;
       remainder = new_remainder;
-      //console.log(`remainder after ${quarter} quarters: ${remainder}`);
       //Dime
       new_remainder = remainder % 0.1;
       dime = (remainder - new_remainder) / 0.1;
       remainder = new_remainder;
-      //console.log(`remainder after ${dime} dimes: ${remainder}`);
       //Nickel
       new_remainder = remainder % 0.05;
       nickel = (remainder - new_remainder) / 0.05;
       remainder = new_remainder;
-      //console.log(`remainder after ${nickel} nickels: ${remainder}`);
       //Penny
-      penny = (remainder * 100).toFixed(0);
-      //penny = (remainder - new_remainder) / 0.01;
-      //remainder = new_remainder;
-      //console.log(`remainder after ${penny} pennies: ${remainder}`);
+      penny = Math.round(remainder * 100);
+
+      if (dollar === 1) {
+        dollar_message = `${dollar} dollar`;
+      } else if (dollar > 1) {
+        dollar_message = `${dollar} dollars`;
+      }
+
+      if (quarter === 1) {
+        quarter_message = `${quarter} quarter`;
+      } else if (quarter > 1) {
+        quarter_message = `${quarter} quarters`;
+      }
+      if (quarter_message !== '' && dollar_message !== '') {
+        quarter_message = ', ' + quarter_message;
+      }
+      if (dime === 1) {
+        dime_message = `${dime} dime`;
+      } else if (dime > 1) {
+        dime_message = `${dime} dimes`;
+      }
+      if (
+        dime_message !== '' &&
+        (quarter_message !== '' || dollar_message !== '')
+      ) {
+        dime_message = ', ' + dime_message;
+      }
+      if (nickel === 1) {
+        nickel_message = `${nickel} nickel`;
+      } else if (nickel > 1) {
+        nickel_message = `${nickel} nickels`;
+      }
+      if (
+        nickel_message !== '' &&
+        (quarter_message !== '' || dollar_message !== '' || dime_message !== '')
+      ) {
+        nickel_message = ', ' + nickel_message;
+      }
+      if (penny === 1) {
+        penny_message = `${penny} penny`;
+      } else if (penny > 1) {
+        penny_message = `${penny} pennies`;
+      }
+      if (
+        penny_message !== '' &&
+        (quarter_message !== '' ||
+          dollar_message !== '' ||
+          dime_message !== '' ||
+          nickel_message !== '')
+      ) {
+        penny_message = ', ' + penny_message;
+      }
       return `$${input.toFixed(
         2
-      )} ==> ${dollar} dollars, ${quarter} quarters, ${dime} dimes, ${nickel} nickels, ${penny} pennies`;
+      )} ==> ${dollar_message}${quarter_message}${dime_message}${nickel_message}${penny_message}`;
     }
   }
 };
