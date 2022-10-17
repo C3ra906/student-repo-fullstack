@@ -24,38 +24,41 @@ const calculateChange = (input) => {
       dollar = input / 1;
       return `$${input.toFixed(2)} ==> ${dollar} dollars`;
     } else {
-      //Dollar
+      //Dollar Calculation
       remainder = input % 1;
       dollar = (input - remainder) / 1;
-      //Quarter
+      //Quarter Calculation
       new_remainder = remainder % 0.25;
       quarter = (remainder - new_remainder) / 0.25;
       remainder = new_remainder;
-      //Dime
+      //Dime Calculation
       new_remainder = remainder % 0.1;
       dime = (remainder - new_remainder) / 0.1;
       remainder = new_remainder;
-      //Nickel
+      //Nickel Calculation
       new_remainder = remainder % 0.05;
       nickel = (remainder - new_remainder) / 0.05;
       remainder = new_remainder;
-      //Penny
+      //Penny Calculation
       penny = Math.round(remainder * 100);
 
+      //Dollar Amount Message
       if (dollar === 1) {
         dollar_message = `${dollar} dollar`;
       } else if (dollar > 1) {
         dollar_message = `${dollar} dollars`;
       }
-
+      //Quarter Amount Message
       if (quarter === 1) {
         quarter_message = `${quarter} quarter`;
       } else if (quarter > 1) {
         quarter_message = `${quarter} quarters`;
       }
       if (quarter_message !== '' && dollar_message !== '') {
+        //Adds , if needed
         quarter_message = ', ' + quarter_message;
       }
+      //Dime Amount Message
       if (dime === 1) {
         dime_message = `${dime} dime`;
       } else if (dime > 1) {
@@ -63,10 +66,11 @@ const calculateChange = (input) => {
       }
       if (
         dime_message !== '' &&
-        (quarter_message !== '' || dollar_message !== '')
+        (quarter_message !== '' || dollar_message !== '') //Adds , if needed
       ) {
         dime_message = ', ' + dime_message;
       }
+      //Nickel Amount Message
       if (nickel === 1) {
         nickel_message = `${nickel} nickel`;
       } else if (nickel > 1) {
@@ -74,16 +78,18 @@ const calculateChange = (input) => {
       }
       if (
         nickel_message !== '' &&
-        (quarter_message !== '' || dollar_message !== '' || dime_message !== '')
+        (quarter_message !== '' || dollar_message !== '' || dime_message !== '') //Adds , if needed
       ) {
         nickel_message = ', ' + nickel_message;
       }
+      //Penny Amount Message
       if (penny === 1) {
         penny_message = `${penny} penny`;
       } else if (penny > 1) {
         penny_message = `${penny} pennies`;
       }
       if (
+        //Adds , if needed
         penny_message !== '' &&
         (quarter_message !== '' ||
           dollar_message !== '' ||
