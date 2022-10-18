@@ -9,6 +9,7 @@ let new_element = document.createElement('div');
 let result = document.createElement('p');
 let input_array = [];
 let counter = 0;
+
 result.innerHTML = '';
 new_element.appendChild(result);
 main.appendChild(new_element);
@@ -17,10 +18,13 @@ main.addEventListener('input', array);
 
 function array(event) {
   if (number.value[counter] !== undefined) {
+    //a number was inputted
     input_array.push(number.value[counter]);
-    console.log(`${number.value[counter]} was added to the array`);
-    console.log(input_array);
     counter += 1;
+  } else {
+    //backspace inputted
+    input_array.pop(number.value[counter - 1]);
+    counter -= 1;
   }
 }
 
