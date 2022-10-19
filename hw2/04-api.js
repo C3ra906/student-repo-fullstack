@@ -26,7 +26,7 @@ const getData = (url) => {
     .catch((error) => {
       console.error(error);
       let element = document.createElement('div');
-      element.textContent = 'An error occurred. Please reload.';
+      element.innerHTML = 'An error occurred. Please reload.';
       app.append(element);
     });
 };
