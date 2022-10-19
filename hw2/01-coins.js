@@ -111,6 +111,7 @@ const calculateChange = (input) => {
       ) {
         penny_message = ', ' + penny_message;
       }
+
       return `$${input.toFixed(
         2
       )} ==> ${dollar_message}${quarter_message}${dime_message}${nickel_message}${penny_message}`;
