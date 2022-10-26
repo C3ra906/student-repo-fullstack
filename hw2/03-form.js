@@ -37,4 +37,5 @@ function handleSubmit(event) {
     // Empty Name or Email
     console.warn('You must enter your name and email to submit this form');
   }
+  event.preventDefault();
 }
