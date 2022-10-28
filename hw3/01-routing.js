@@ -87,21 +87,29 @@ const server = http.createServer((req, res) => {
     res.end();
   }
 
-  // new route --> /check-cookies - I'm unsure how to fix this just using Node?
+  // new route --> /check-cookies
   else if (req.url === '/check-cookies') {
     res.writeHead(200, {
       'Content-Type': 'text/plain',
     });
 
-    let cookie = req.getHeader('Cookie');
-    //res.write(`${cookie}`);
-    //cookie.find('hello=world');
+    // look for cookie value in the request header
+    let find_cookies = req.headers.cookie;
 
-    if (cookie.length !== 0) {
-      res.write(`yes`);
-    } else {
+    // cookie found
+    if (find_cookies !== '') {
+      // check cookie value
+      if (find_cookies === 'hello=world') {
+        res.write(`yes`);
+      } else {
+        res.write(`no`);
+      }
+    }
+    // cookie not found
+    else {
       res.write(`no`);
     }
+
     res.end();
   }
 
