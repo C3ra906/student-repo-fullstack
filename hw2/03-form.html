@@ -12,8 +12,49 @@
     <script defer src="03-form.js"></script>
   </head>
   <body class="bg-dark">
-    <form class="bg-light border rounded w-50 mx-auto mt-5 p-3">
-      <h1 class="mt-2 mb-4">Contact Form</h1>
-    </form>
+    <main class="bootstrap-form">
+      <form
+        class="form bg-light border rounded w-50 mx-auto mt-5 p-3"
+        method="GET"
+        action="03-form.html"
+      >
+        <h1 class="h1 mt-2 mb-4">Contact Form</h1>
+        <div class="form-group mx-auto my-2">
+          <label class="py-2" for="name">Name*</label>
+          <input type="text" class="form-control" id="name" />
+        </div>
+        <div class="form-group mx-auto my-2">
+          <label class="py-2" for="email">Email*</label>
+          <input type="text" class="form-control" id="email" />
+        </div>
+        <div class="form-group mx-auto my-2">
+          <label class="py-2" for="feedback">Submit your message:</label>
+          <textarea class="form-control" id="feedback" rows="3"></textarea>
+        </div>
+        <div class="form-group mx-auto my-2 py-2">
+          <input
+            class="form-checkbox"
+            type="checkbox"
+            value=""
+            id="newsletter"
+          />
+          <label for="newsletter">Sign up for the newsletter</label>
+        </div>
+        <div class="row form-group mx-auto mb-2">
+          <input
+            class="col btn btn-primary my-2 px-5"
+            type="submit"
+            name="submit"
+            value="Submit"
+          />
+          <input
+            class="col btn btn-secondary mx-1 my-2 px-5"
+            type="reset"
+            name="reset"
+            value="Reset"
+          />
+        </div>
+      </form>
+    </main>
   </body>
 </html>

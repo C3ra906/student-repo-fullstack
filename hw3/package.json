@@ -1,0 +1,12 @@
+{
+  "name": "hw3",
+  "version": "1.0.0",
+  "description": "Homework 3 of Fullstack Web Dev class 2022",
+  "main": "01-routing.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cera Oh",
+  "license": "ISC"
+}
