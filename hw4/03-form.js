@@ -9,8 +9,22 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
 // POST request
-app.post('', (req, res) => {
-  // Add your code here
+app.post('/submit', (req, res) => {
+  res.status(200);
+  res.type('html');
+  res.write(`<p>Name: ` + req.body.Name + `<br>`);
+  res.write(`Email: ` + req.body.Email + `<br>`);
+  if (req.body.Comments) {
+    res.write(`Comments: ` + req.body.Comments + `<br>`);
+  } else {
+    res.write(`Comments: n/a<br>`);
+  }
+  if (req.body.Newsletter === '') {
+    res.write(`Newsletter: Yes, sign me up for the newsletter.</p>`);
+  } else {
+    res.write(`Newsletter: No, thank you.</p>`);
+  }
+  res.end();
 });
 
 app.listen(port, () => {
