@@ -62,21 +62,27 @@ app.get('/redirected', (req, res) => {
 // cache route, get method
 app.get('/cache', (req, res) => {
   res.status(200);
-  res.type('html');
-  res.send('<h1>Cookie</h1><p>You have been redirected</p>');
+  res.set({
+    'Content-Type': 'text/plain',
+    'Cache-Control': 'max-age=86400',
+  });
+  res.send(`this resource was cached`);
 });
 
 // cookie route, get method
 app.get('/cookie', (req, res) => {
   res.status(200);
   res.type('txt');
+  res.cookie('hello', 'world');
+  res.send('cookies...yummm');
 });
 
 // all other route returns 404
-app.use((err, req, res, next) => {
+app.use((req, res, next) => {
   res.status(404);
   res.type('html');
-  res.send('404 - page not found');
+  res.send(`<h1>404: ${req.url.slice(1)} page not found :( </h1>`);
+  next();
 });
 
 app.listen(port, () => {
