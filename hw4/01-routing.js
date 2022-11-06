@@ -40,9 +40,44 @@ app.get('/', (req, res) => {
   res.end();
 });
 
-app.get('/welcome', (req, res) => {});
+// welcome route, get method
+app.get('/welcome', (req, res) => {
+  res.status(200);
+  res.type('html');
+  res.send('<h1>Welcome</h1><p>Welcome to the welcome page :) </p>');
+});
 
-// Add your code here
+// redirect route, get method
+app.get('/redirect', (req, res) => {
+  res.redirect(302, '/redirected');
+});
+
+// redirected route, get method
+app.get('/redirected', (req, res) => {
+  res.status(200);
+  res.type('html');
+  res.send('<h1>Redirected</h1><p>You have been redirected</p>');
+});
+
+// cache route, get method
+app.get('/cache', (req, res) => {
+  res.status(200);
+  res.type('html');
+  res.send('<h1>Cookie</h1><p>You have been redirected</p>');
+});
+
+// cookie route, get method
+app.get('/cookie', (req, res) => {
+  res.status(200);
+  res.type('txt');
+});
+
+// all other route returns 404
+app.use((err, req, res, next) => {
+  res.status(404);
+  res.type('html');
+  res.send('404 - page not found');
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
