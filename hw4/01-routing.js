@@ -31,6 +31,7 @@ let getRoutes = () => {
   return result;
 };
 
+// main route, get method
 app.get('/', (req, res) => {
   let routeResults = getRoutes();
 
