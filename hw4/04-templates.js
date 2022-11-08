@@ -49,7 +49,7 @@ app.get('/capitals', (req, res) => {
     .catch(function (error) {
       country_capital.push('An error occurred. Please reload.');
 
-      // render pug template
+      // render pug template with error message
       res.render('page', {
         heading: 'Countries and Capitals',
         results: country_capital.sort(),
@@ -126,7 +126,6 @@ app.get('/regions', (req, res) => {
   let oceania = 0;
   let antarctic = 0;
   let americas = 0;
-  let row = '';
 
   // fetch API data and render
   axios
@@ -147,6 +146,7 @@ app.get('/regions', (req, res) => {
         } else if (country.region === 'Americas') {
           americas = americas + 1;
         } else {
+          // handle error of unmatched region
           console.log(`hmm...i'm missing ${country.region} region`);
         }
       });
@@ -160,7 +160,7 @@ app.get('/regions', (req, res) => {
 
       // check if output array is empty
       if (regions.length !== 0) {
-        // render pug template
+        // render pug template of sorted data
         res.render('page', {
           heading: 'Regions of the World',
           results: regions.sort(),
@@ -170,7 +170,7 @@ app.get('/regions', (req, res) => {
     .catch(function (error) {
       regions.push('An error occurred. Please reload.');
 
-      // render pug template
+      // render pug template with error message
       res.render('page', {
         heading: 'Regions of the World',
         results: regions.sort(),

@@ -14,14 +14,21 @@ app.post('/submit', (req, res) => {
   res.type('html');
   res.write(`<p>Name: ` + req.body.Name + `<br>`);
   res.write(`Email: ` + req.body.Email + `<br>`);
+
+  // Comments section is filled out
   if (req.body.Comments) {
     res.write(`Comments: ` + req.body.Comments + `<br>`);
-  } else {
+  }
+  // Comments empty
+  else {
     res.write(`Comments: n/a<br>`);
   }
+  // Newsletter checkbox is checked
   if (req.body.Newsletter === '') {
     res.write(`Newsletter: Yes, sign me up for the newsletter.</p>`);
-  } else {
+  }
+  // Newsletter checkbox is unchecked
+  else {
     res.write(`Newsletter: No, thank you.</p>`);
   }
   res.end();
